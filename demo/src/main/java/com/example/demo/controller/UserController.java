@@ -18,20 +18,20 @@ public class UserController {
         return "neeraj";
     }
 
-    @RequestMapping("/createUser")
+    @PostMapping("/createUser")
     String createUser(@RequestBody User user)
     {
         userServiceImpl.create(user);
         return user.toString();
     }
 
-    @RequestMapping("/updateUser/{id}")
+    @PutMapping("/updateUser/{id}")
     void updateUser(@PathVariable int id ,@RequestBody User user)
     {
     userServiceImpl.updateUser(id,user);
     }
 
-    @RequestMapping("/deleteUse/{id}")
+    @DeleteMapping("/deleteUse/{id}")
     User delete(@PathVariable int id ){
         return userServiceImpl.deleteUser(id);
     }
