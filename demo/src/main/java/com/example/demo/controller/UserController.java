@@ -1,0 +1,43 @@
+package com.example.demo.controller;
+
+import com.example.demo.entity.User;
+import com.example.demo.serviceimpl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class UserController {
+
+    @Autowired
+    UserServiceImpl userServiceImpl;
+    @GetMapping("/login")
+    String login()
+    {
+        return "neeraj";
+    }
+
+    @RequestMapping("/createUser")
+    String createUser(@RequestBody User user)
+    {
+        userServiceImpl.create(user);
+        return user.toString();
+    }
+
+    @RequestMapping("/updateUser/{id}")
+    void updateUser(@PathVariable int id ,@RequestBody User user)
+    {
+    userServiceImpl.updateUser(id,user);
+    }
+
+    @RequestMapping("/deleteUse/{id}")
+    User delete(@PathVariable int id ){
+        return userServiceImpl.deleteUser(id);
+    }
+    List<User> getAllUser()
+    {
+        return userServiceImpl.getAllUser();
+    }
+
+}
