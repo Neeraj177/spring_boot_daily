@@ -1,6 +1,7 @@
 package com.example.demo.serviceimpl;
 
 import com.example.demo.entity.User;
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,6 @@ public class UserServiceImpl implements UserService {
                 return u;
             }
         }
-        return null;
+        throw new UserNotFoundException("User not found ");
     }
 }
