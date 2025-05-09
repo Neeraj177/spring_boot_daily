@@ -2,7 +2,9 @@ package com.example.demo.serviceimpl;
 
 import com.example.demo.entity.User;
 import com.example.demo.exception.UserNotFoundException;
+import com.example.demo.repository.UserRepo;
 import com.example.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,11 +14,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     List<User> al = new ArrayList<>();
-
+    @Autowired
+    UserRepo userRepo;
 
     @Override
     public User create(User user) {
-        al.add(user);
+        userRepo.save(user);
         return user;
     }
 
