@@ -11,10 +11,6 @@ public class GlobalExceptionHandler {
     {
         return new ResponseStatus(200,userNotFoundException.getMessage());
     }
-    @ExceptionHandler(Exception.class)
-    public String notFound(Exception e)
-    {
-        return "Something went wrong";
-    }
+
 
 }

@@ -12,15 +12,22 @@ public class UserController {
 
     @Autowired
     UserServiceImpl userServiceImpl;
-    @GetMapping("/login")
-    String login()
+    @RequestMapping("/login")
+    String login( @RequestParam("name") String name,
+                  @RequestParam("password") String password)
     {
-        return "neeraj";
+        if(userServiceImpl.login(name,password)!=null)
+        return "login success";
+        else return "login failed";
     }
 
-    @PostMapping("/createUser")
-    String createUser(@RequestBody User user)
+    @RequestMapping ("/createUser")
+    String createUser(    @RequestParam("id") int id,
+                          @RequestParam("name") String name,
+                          @RequestParam("password") String password)
     {
+        User user = new User(id,name,password);
+        System.out.println("user -> "+user);
         userServiceImpl.create(user);
         return user.toString();
     }

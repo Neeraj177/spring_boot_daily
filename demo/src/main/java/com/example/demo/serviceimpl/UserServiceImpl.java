@@ -30,10 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User deleteUser(int id) {
-        for(User u : al)
-        {
-            if(id==u.getId())
-            {
+        for (User u : al) {
+            if (id == u.getId()) {
                 al.remove(u);
                 return u;
             }
@@ -42,16 +40,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(int id ,User user) {
-        for(User u : al)
-        {
-            if(id==u.getId())
-            {
+    public User updateUser(int id, User user) {
+        for (User u : al) {
+            if (id == u.getId()) {
                 u.setName(user.getName());
                 u.setPassword(user.getPassword());
                 return u;
             }
         }
         throw new UserNotFoundException("User not found ");
+    }
+
+    @Override
+    public User login(String name, String password) {
+      return   userRepo.findByNameAndPassword(name,password);
     }
 }
